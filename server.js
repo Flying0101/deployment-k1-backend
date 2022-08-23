@@ -3,12 +3,16 @@ const http = require('http');
 const models = require('./models/models');
 
 // start the connection.
-const io = require('socket.io')(4000, {
+
+const port = process.env.PORT;
+
+
+const io = require('socket.io')(port, {
     cors: {
         origin: "*",
     },
 });
-   
+
 
 //middleware to store all messages being send that are not empty.
 io.use((socket, next) => {
