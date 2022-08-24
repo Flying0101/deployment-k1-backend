@@ -23,7 +23,7 @@ console.log("Database in action");
 
 // message tabell
 const messages = `CREATE TABLE messages (
-    id SERIAL PRIMARY KEY AUTOINCREMENT,
+    id SERIAL PRIMARY KEY,
     message TEXT,
     author TEXT,
     time TEXT,
@@ -33,7 +33,7 @@ const messages = `CREATE TABLE messages (
 
 //room tabell
 const rooms = `CREATE TABLE rooms (
-        id SERIAL PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         name TEXT,
         creator TEXT
         ); 
@@ -55,9 +55,15 @@ const db = new Client({
 
 db.connect();
 
+
+
+
+
+
+
 // kör room statement.
 db.query(rooms, (error) => {
-    if (!rooms) {
+    if (rooms) {
         // Om tabellen redan finns
         console.error(`${error}`);
     }
