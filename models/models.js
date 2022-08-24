@@ -113,20 +113,15 @@ function delAllMsg(data) {
 
 
 // gets all rooms from database to be able to load them into frontend.
-function allChatts() {
+async function allChatts() {
 
   const sql = `SELECT * FROM rooms`
 
 
 
-  return db.query(sql, function (error, rows) {
-    if (error) {
-      console.log(error);
-    }
+  const result = await db.query(sql) 
 
-    return rows;
-
-  })
+  return result.rows;
 
 
 
