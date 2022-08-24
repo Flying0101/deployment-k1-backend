@@ -103,7 +103,7 @@ async function allChatts() {
 
   const result = await db.query(sql)
 
-  return result.rows;
+  return result.rows[0];
 
 
 
@@ -123,7 +123,7 @@ function allNames() {
 
   const result = await db.query(sql)
 
-  return result.rows;
+  return result.rows[0];
 
 
 
