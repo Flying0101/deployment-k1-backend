@@ -36,22 +36,22 @@ io.on('connection', socket => {
 
 
     // listens on send from frontend and excutes logic
-    socket.on('send_message', async (data) => {
+    socket.on('send_message',  (data) => {
         if (data.message === '') {
             return console.log('ERROR empty message!');
         }
         else {
             console.log(data);
-            await models.addMessage(data);
+            models.addMessage(data);
             socket.to(data.area).emit('rec_message', (data))
         }
     })
 
 
     // listens on send from frontend and excutes logic
-    socket.on('send_room', async (data) => {
+    socket.on('send_room',  (data) => {
         console.log(data);
-        await models.addRoom(data);
+        models.addRoom(data);
         socket.broadcast.emit('send_room', (data))
     })
 
@@ -77,10 +77,10 @@ io.on('connection', socket => {
 
 
     // listens on send from frontend and excutes logic
-    socket.on('all_room', async () => {
+    socket.on('all_room',  () => {
         console.log(`loading all rooms....`);
-        const allRooms = await models.allChatts();
-        const allNames = await models.allNames();
+        const allRooms = models.allChatts();
+        const allNames = models.allNames();
         socket.emit('gotall_room', (allRooms))
         socket.emit('gotall_names', (allNames))
     })
