@@ -11,7 +11,7 @@ function addMessage(data) {
 
   const sql = 'INSERT INTO messages (message, author, time, chat) VALUES (?, ?, ?, ?)'
 
-  const result = await db.query(sql, [data.message, data.author, data.time, data.area]); 
+  const result = await db.query(sql, [data.message, data.author, data.time, data.area]);
 
   return result;
 
@@ -21,6 +21,9 @@ function addMessage(data) {
 
 
 
+// const result = await db.query()
+
+// return result.rows;
 
 
 
@@ -32,13 +35,9 @@ function addRoom(data) {
 
 
 
+  const result = await db.query(sql, [data.name, data.creator])
 
-  return db.query(sql, [data.name, data.creator], function (error) {
-    if (error) {
-      console.log(error);
-    }
-    return;
-  })
+  return result;
 
 
 
@@ -60,17 +59,9 @@ function deleteChatt(data) {
 
 
 
-
-
-  return db.query(sql, data, function (error) {
-    if (error) {
-      console.log(error);
-    }
-    console.log(`room: ${data} was deleted!`);
-    return;
-
-
-  })
+  const result = await db.query(sql, data)
+  console.log(`room: ${data} was deleted!`);
+  return result;
 
 
 }
@@ -116,7 +107,7 @@ async function allChatts() {
 
 
 
-  const result = await db.query(sql) 
+  const result = await db.query(sql)
 
   return result.rows;
 
