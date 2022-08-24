@@ -7,7 +7,7 @@ const fs = require("fs");
 
 
 // Add message with sql 
-function addMessage(data) {
+async function addMessage(data) {
 
   const sql = 'INSERT INTO messages (message, author, time, chat) VALUES ($1, $1, $1, $1)'
 
@@ -29,7 +29,7 @@ function addMessage(data) {
 
 
 //send room data and creates room in database with sql.
-function addRoom(data) {
+async function addRoom(data) {
 
   const sql = 'INSERT INTO rooms (name, creator) VALUES ($1, $1)'
 
@@ -51,7 +51,7 @@ function addRoom(data) {
 
 
 // delete room without async so sync.
-function deleteChatt(data) {
+async function deleteChatt(data) {
 
 
   const sql = `DELETE FROM rooms WHERE name = $1`
@@ -75,7 +75,7 @@ function deleteChatt(data) {
 
 
 // delete messages without async so sync.
-function delAllMsg(data) {
+async function delAllMsg(data) {
 
 
   const sql = `DELETE FROM messages WHERE chat = $1`
@@ -116,7 +116,7 @@ async function allChatts() {
 
 
 // get all rooms name to be able to load and validate in frontend.
-function allNames() {
+async function allNames() {
 
   const sql = `SELECT name FROM rooms`
 
@@ -133,7 +133,7 @@ function allNames() {
 
 // validates if message is not empty and writes it into txt file
 
-function logItAll(data) {
+async function logItAll(data) {
 
   const fsDat = JSON.stringify(data);
   if (data.message) {
