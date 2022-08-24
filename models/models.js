@@ -81,15 +81,9 @@ function delAllMsg(data) {
   const sql = `DELETE FROM messages WHERE chat = $1`
 
 
-  return db.query(sql, data, function (error) {
-    if (error) {
-      console.log(error);
-    }
-    console.log(`all Messages in :${data}: are deleted!`);
-
-    return;
-
-  })
+  const result = await db.query(sql, data)
+  console.log(`all Messages in :${data}: are deleted!`);
+  return result;
 
 
 }
@@ -126,7 +120,7 @@ function allNames() {
 
   const sql = `SELECT name FROM rooms`
 
-  
+
   const result = await db.query(sql)
 
   return result.rows;
