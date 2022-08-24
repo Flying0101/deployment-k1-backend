@@ -11,12 +11,9 @@ function addMessage(data) {
 
   const sql = 'INSERT INTO messages (message, author, time, chat) VALUES (?, ?, ?, ?)'
 
-  return db.query(sql, [data.message, data.author, data.time, data.area], function (error) {
-    if (error) {
-      console.log(error);
-    }
-    return;
-  })
+  const result = await db.query(sql, [data.message, data.author, data.time, data.area]); 
+
+  return result;
 
 
 }
