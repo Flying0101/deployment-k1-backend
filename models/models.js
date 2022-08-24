@@ -126,15 +126,11 @@ function allNames() {
 
   const sql = `SELECT name FROM rooms`
 
+  
+  const result = await db.query(sql)
 
-  return db.query(sql, function (error, rows) {
-    if (error) {
-      console.log(error);
-    }
+  return result.rows;
 
-    return rows;
-
-  })
 
 
 }
