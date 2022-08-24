@@ -13,7 +13,7 @@ async function addMessage(data) {
 
   const result = await db.query(sql, [data.message, data.author, data.time, data.area]);
 
-  return result;
+  return result.rows;
 
 
 }
@@ -37,7 +37,7 @@ async function addRoom(data) {
 
   const result = await db.query(sql, [data.name, data.creator])
 
-  return result;
+  return result.rows;
 
 
 
@@ -59,9 +59,11 @@ async function deleteChatt(data) {
 
 
 
-  const result = await db.query(sql, data)
+  const result = await db.query(sql, [data])
+
   console.log(`room: ${data} was deleted!`);
-  return result;
+
+  return result.rows;
 
 
 }
@@ -81,9 +83,9 @@ async function delAllMsg(data) {
   const sql = `DELETE FROM messages WHERE chat = $1`
 
 
-  const result = await db.query(sql, data)
+  const result = await db.query(sql, [data])
   console.log(`all Messages in :${data}: are deleted!`);
-  return result;
+  return result.rows;
 
 
 }
