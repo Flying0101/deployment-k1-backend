@@ -9,7 +9,7 @@ const fs = require("fs");
 // Add message with sql 
 function addMessage(data) {
 
-  const sql = 'INSERT INTO messages (message, author, time, chat) VALUES (?, ?, ?, ?)'
+  const sql = 'INSERT INTO messages (message, author, time, chat) VALUES ($1, $1, $1, $1)'
 
   const result = await db.query(sql, [data.message, data.author, data.time, data.area]);
 
@@ -31,7 +31,7 @@ function addMessage(data) {
 //send room data and creates room in database with sql.
 function addRoom(data) {
 
-  const sql = 'INSERT INTO rooms (name, creator) VALUES (?, ?)'
+  const sql = 'INSERT INTO rooms (name, creator) VALUES ($1, $1)'
 
 
 
@@ -54,7 +54,7 @@ function addRoom(data) {
 function deleteChatt(data) {
 
 
-  const sql = `DELETE FROM rooms WHERE name = ?`
+  const sql = `DELETE FROM rooms WHERE name = $1`
 
 
 
@@ -78,7 +78,7 @@ function deleteChatt(data) {
 function delAllMsg(data) {
 
 
-  const sql = `DELETE FROM messages WHERE chat = ?`
+  const sql = `DELETE FROM messages WHERE chat = $1`
 
 
   return db.query(sql, data, function (error) {
