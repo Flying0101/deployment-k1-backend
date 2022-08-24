@@ -9,7 +9,7 @@ const fs = require("fs");
 // Add message with sql 
 async function addMessage(data) {
 
-  const sql = 'INSERT INTO messages (message, author, time, chat) VALUES ($1, $1, $1, $1)'
+  const sql = 'INSERT INTO messages (message, author, time, chat) VALUES ($1, $2, $3, $4)'
 
   const result = await db.query(sql, [data.message, data.author, data.time, data.area]);
 
@@ -31,7 +31,7 @@ async function addMessage(data) {
 //send room data and creates room in database with sql.
 async function addRoom(data) {
 
-  const sql = 'INSERT INTO rooms (name, creator) VALUES ($1, $1)'
+  const sql = 'INSERT INTO rooms (name, creator) VALUES ($1, $2)'
 
 
 

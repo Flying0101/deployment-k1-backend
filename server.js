@@ -20,7 +20,7 @@ const io = require('socket.io')(port, {
 io.use((socket, next) => {
 
     socket.on('send_message', (data) => {
-
+         
         models.logItAll(data);
         console.log('msg file going thru..')
     })
